@@ -13,7 +13,7 @@ public partial class Clinica
 
     public string Cnpj { get; set; } = null!;
 
-    public virtual ICollection<Consulta> Consulta { get; set; } = new List<Consulta>();
+    public virtual ICollection<Consulta> Consultas { get; set; } = new List<Consulta>();
 
     public virtual ICollection<Medico> Medicos { get; set; } = new List<Medico>();
 }

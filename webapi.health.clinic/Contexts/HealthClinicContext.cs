@@ -16,23 +16,23 @@ public partial class HealthClinicContext : DbContext
     {
     }
 
-    public virtual DbSet<Clinica> Clinicas { get; set; }
+    public virtual DbSet<Clinica> Clinica { get; set; }
 
-    public virtual DbSet<Comentario> Comentarios { get; set; }
+    public virtual DbSet<Comentario> Comentario { get; set; }
 
     public virtual DbSet<Consulta> Consulta { get; set; }
 
-    public virtual DbSet<Especialidade> Especialidades { get; set; }
+    public virtual DbSet<Especialidade> Especialidade { get; set; }
 
-    public virtual DbSet<Medico> Medicos { get; set; }
+    public virtual DbSet<Medico> Medico { get; set; }
 
-    public virtual DbSet<Paciente> Pacientes { get; set; }
+    public virtual DbSet<Paciente> Paciente { get; set; }
 
-    public virtual DbSet<Prontuario> Prontuarios { get; set; }
+    public virtual DbSet<Prontuario> Prontuario { get; set; }
 
-    public virtual DbSet<TipoDeUsuario> TipoDeUsuarios { get; set; }
+    public virtual DbSet<TipoDeUsuario> TipoDeUsuario { get; set; }
 
-    public virtual DbSet<Usuario> Usuarios { get; set; }
+    public virtual DbSet<Usuario> Usuario { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
@@ -91,7 +91,7 @@ public partial class HealthClinicContext : DbContext
             entity.Property(e => e.IdConsulta).ValueGeneratedNever();
             entity.Property(e => e.Data).HasColumnType("datetime");
 
-            entity.HasOne(d => d.IdClinicaNavigation).WithMany(p => p.Consulta)
+            entity.HasOne(d => d.IdClinicaNavigation).WithMany(p => p.Consultas)
                 .HasForeignKey(d => d.IdClinica)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__Consulta__IdClin__60A75C0F");
