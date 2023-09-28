@@ -1,4 +1,4 @@
-﻿using webapi.health.clinic.Contexts;
+﻿using webapi.health.clinic.Context;
 using webapi.health.clinic.Domains;
 using webapi.health.clinic.Interfaces;
 
@@ -17,7 +17,6 @@ namespace webapi.health.clinic.Repositories
 
                 if (clinicaBuscada != null)
                 {
-                    clinicaBuscada.IdClinica = clinica.IdClinica;
                     clinicaBuscada.RazaoSocial = clinica.RazaoSocial;
                     clinicaBuscada.Endereco = clinica.Endereco;
                     clinicaBuscada.Cnpj = clinica.Cnpj;
@@ -79,6 +78,8 @@ namespace webapi.health.clinic.Repositories
                     RazaoSocial = c.RazaoSocial,
                     Endereco = c.Endereco,
                     Cnpj = c.Cnpj,
+                    HoraAbertura = c.HoraAbertura,
+                    HoraEncerramento = c.HoraEncerramento,
                     Consultas = ctx.Consulta.Where(con => con.IdClinica == c.IdClinica).ToList(),
                     Medicos = ctx.Medico.Where(m => m.IdClinica == c.IdClinica).ToList(),
                 }).ToList();

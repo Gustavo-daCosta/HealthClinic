@@ -80,3 +80,5 @@ C:\Users\51908518855\Desktop\HealthClinic\webapi.health.clinic\obj\Debug\net7.0\
 C:\Users\51908518855\Desktop\HealthClinic\webapi.health.clinic\obj\Debug\net7.0\webapi.health.clinic.pdb
 C:\Users\51908518855\Desktop\HealthClinic\webapi.health.clinic\obj\Debug\net7.0\webapi.health.clinic.genruntimeconfig.cache
 C:\Users\51908518855\Desktop\HealthClinic\webapi.health.clinic\obj\Debug\net7.0\ref\webapi.health.clinic.dll
+C:\Users\51908518855\Desktop\HealthClinic\webapi.health.clinic\bin\Debug\net7.0\EntityFrameworkCore.SqlServer.DateOnlyTimeOnly.dll
+C:\Users\51908518855\Desktop\HealthClinic\webapi.health.clinic\obj\Debug\net7.0\EFCoreSqlServerDateOnlyTimeOnly.cs

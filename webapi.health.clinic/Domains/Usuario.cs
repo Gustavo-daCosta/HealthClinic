@@ -5,7 +5,7 @@ namespace webapi.health.clinic.Domains;
 
 public partial class Usuario
 {
-    public Guid IdUsuario { get; set; }
+    public Guid IdUsuario { get; set; } = Guid.NewGuid();
 
     public Guid IdTipoUsuario { get; set; }
 
@@ -16,10 +16,6 @@ public partial class Usuario
     public string Senha { get; set; } = null!;
 
     public string Telefone { get; set; } = null!;
-
-    public string Cpf { get; set; } = null!;
-
-    public DateTime DataNascimento { get; set; }
 
     public virtual TipoDeUsuario IdTipoUsuarioNavigation { get; set; } = null!;
 
