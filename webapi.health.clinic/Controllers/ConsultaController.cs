@@ -9,10 +9,10 @@ namespace webapi.health.clinic.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [Produces("application/json")]
-    public class MedicoController : ControllerBase
+    public class ConsultaController : ControllerBase
     {
-        private IMedicoRepository _medicoRepository { get; set; }
-        public MedicoController() => _medicoRepository = new MedicoRepository();
+        private IConsultaRepository _consultaRepository { get; set; }
+        public ConsultaController() => _consultaRepository = new ConsultaRepository();
 
         [HttpGet]
         [Route("Listar")]
@@ -20,8 +20,8 @@ namespace webapi.health.clinic.Controllers
         {
             try
             {
-                List<Medico> listaMedicos = _medicoRepository.Listar();
-                return Ok(listaMedicos);
+                List<Consulta> listaConsultas = _consultaRepository.Listar();
+                return Ok(listaConsultas);
             }
             catch (Exception error)
             {
@@ -35,8 +35,8 @@ namespace webapi.health.clinic.Controllers
         {
             try
             {
-                Medico medicoBuscado = _medicoRepository.BuscarPorId(id);
-                return Ok(medicoBuscado);
+                Consulta consultaBuscada = _consultaRepository.BuscarPorId(id);
+                return Ok(consultaBuscada);
             }
             catch (Exception error)
             {
@@ -46,11 +46,11 @@ namespace webapi.health.clinic.Controllers
 
         [HttpPost]
         [Route("Cadastrar")]
-        public IActionResult Post(Medico medico)
+        public IActionResult Post(Consulta consulta)
         {
             try
             {
-                _medicoRepository.Cadastrar(medico);
+                _consultaRepository.Cadastrar(consulta);
                 return StatusCode(201);
             }
             catch (Exception error)
@@ -65,7 +65,7 @@ namespace webapi.health.clinic.Controllers
         {
             try
             {
-                _medicoRepository.Deletar(id);
+                _consultaRepository.Deletar(id);
                 return Ok();
             }
             catch (Exception error)
@@ -76,11 +76,11 @@ namespace webapi.health.clinic.Controllers
 
         [HttpPut]
         [Route("Atualizar")]
-        public IActionResult Put(Guid id, Medico medico)
+        public IActionResult Put(Guid id, Consulta consulta)
         {
             try
             {
-                _medicoRepository.Atualizar(id, medico);
+                _consultaRepository.Atualizar(id, consulta);
                 return Ok();
             }
             catch (Exception error)
