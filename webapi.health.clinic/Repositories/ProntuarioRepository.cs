@@ -17,14 +17,11 @@ namespace webapi.health.clinic.Repositories
 
                 if (prontuarioBuscado != null)
                 {
-                    prontuarioBuscado.IdClinica = prontuario.IdClinica;
-                    prontuarioBuscado.IdMedico = prontuario.IdMedico;
-                    prontuarioBuscado.IdPaciente = prontuario.IdPaciente;
-                    prontuarioBuscado.Data = prontuario.Data;
-                    prontuarioBuscado.Situacao = prontuario.Situacao;
-                    prontuarioBuscado.IdClinicaNavigation = prontuario.IdClinicaNavigation;
-                    prontuarioBuscado.IdMedicoNavigation = prontuario.IdMedicoNavigation;
-                    prontuarioBuscado.IdPacienteNavigation = prontuario.IdPacienteNavigation;
+                    prontuarioBuscado.IdProntuario = prontuario.IdProntuario;
+                    prontuarioBuscado.IdConsulta = prontuario.IdConsulta;
+                    prontuarioBuscado.Descricao = prontuario.Descricao;
+                    prontuarioBuscado.DataCriacao = prontuario.DataCriacao;
+                    prontuarioBuscado.IdConsultaNavigation = prontuario.IdConsultaNavigation;
                     ctx.Prontuario.Update(prontuarioBuscado);
                     ctx.SaveChanges();
                 }
@@ -75,55 +72,21 @@ namespace webapi.health.clinic.Repositories
         {
             try
             {
-                List<Prontuario> listaProntuarios = ctx.Prontuario.Select(c => new Prontuario
+                List<Prontuario> listaProntuarios = ctx.Prontuario.Select(p => new Prontuario
                 {
-                    IdProntuario = c.IdProntuario,
-                    IdClinica = c.IdClinica,
-                    IdMedico = c.IdMedico,
-                    IdPaciente = c.IdPaciente,
-                    Data = c.Data,
-                    Situacao = c.Situacao,
-                    IdClinicaNavigation = new Clinica
+                    IdProntuario = p.IdProntuario,
+                    IdConsulta = p.IdConsulta,
+                    Descricao = p.Descricao,
+                    DataCriacao = p.DataCriacao,
+                    IdConsultaNavigation = new Consulta
                     {
-                        IdClinica = c.IdClinicaNavigation.IdClinica,
-                        RazaoSocial = c.IdClinicaNavigation.RazaoSocial,
-                        Endereco = c.IdClinicaNavigation.Endereco,
-                        Cnpj = c.IdClinicaNavigation.Cnpj,
-                        HoraAbertura = c.IdClinicaNavigation.HoraAbertura,
-                        HoraEncerramento = c.IdClinicaNavigation.HoraEncerramento,
-                    },
-                    IdMedicoNavigation = new Medico
-                    {
-                        IdMedico = c.IdMedicoNavigation.IdMedico,
-                        IdUsuario = c.IdMedicoNavigation.IdUsuario,
-                        Crm = c.IdMedicoNavigation.Crm,
-                        IdUsuarioNavigation = new Usuario
-                        {
-                            IdUsuario = c.IdMedicoNavigation.IdUsuarioNavigation.IdUsuario,
-                            IdTipoUsuario = c.IdMedicoNavigation.IdUsuarioNavigation.IdTipoUsuario,
-                            Nome = c.IdMedicoNavigation.IdUsuarioNavigation.Nome,
-                            Email = c.IdMedicoNavigation.IdUsuarioNavigation.Email,
-                            Telefone = c.IdMedicoNavigation.IdUsuarioNavigation.Telefone,
-                            IdTipoUsuarioNavigation = c.IdMedicoNavigation.IdUsuarioNavigation.IdTipoUsuarioNavigation,
-                        }
-                    },
-                    IdPacienteNavigation = new Paciente
-                    {
-                        IdPaciente = c.IdPacienteNavigation.IdPaciente,
-                        IdUsuario = c.IdPacienteNavigation.IdUsuario,
-                        Cpf = c.IdPacienteNavigation.Cpf,
-                        DataNascimento = c.IdPacienteNavigation.DataNascimento,
-                        IdUsuarioNavigation = new Usuario
-                        {
-                            IdUsuario = c.IdPacienteNavigation.IdUsuarioNavigation.IdUsuario,
-                            IdTipoUsuario = c.IdPacienteNavigation.IdUsuarioNavigation.IdTipoUsuario,
-                            Nome = c.IdPacienteNavigation.IdUsuarioNavigation.Nome,
-                            Email = c.IdPacienteNavigation.IdUsuarioNavigation.Email,
-                            Telefone = c.IdPacienteNavigation.IdUsuarioNavigation.Telefone,
-                            IdTipoUsuarioNavigation = c.IdPacienteNavigation.IdUsuarioNavigation.IdTipoUsuarioNavigation,
-                        }
-                    },
-                    Comentarios = ctx.Comentario.Where(con => con.IdProntuario == c.IdProntuario).ToList(),
+                        IdConsulta = p.IdConsultaNavigation.IdConsulta,
+                        IdClinica = p.IdConsultaNavigation.IdClinica,
+                        IdMedico = p.IdConsultaNavigation.IdMedico,
+                        IdPaciente = p.IdConsultaNavigation.IdPaciente,
+                        Data = p.IdConsultaNavigation.Data,
+                        Situacao = p.IdConsultaNavigation.Situacao,
+                    }
                 }).ToList();
 
                 return listaProntuarios;
