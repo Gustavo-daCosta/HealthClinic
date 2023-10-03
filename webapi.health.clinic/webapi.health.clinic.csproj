@@ -29,4 +29,8 @@
     <Folder Include="Context\" />
   </ItemGroup>
 
+  <PropertyGroup>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+
 </Project>
