@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using webapi.health.clinic.Domains;
 using webapi.health.clinic.Interfaces;
@@ -16,6 +17,7 @@ namespace webapi.health.clinic.Controllers
 
         [HttpGet]
         [Route("BuscarPorEmailESenha")]
+        [Authorize]
         public IActionResult GetByEmailAndPassword(string email, string senha)
         {
             try
@@ -31,6 +33,7 @@ namespace webapi.health.clinic.Controllers
 
         [HttpGet]
         [Route("BuscarPorId")]
+        [Authorize]
         public IActionResult GetById(Guid id)
         {
             try
@@ -46,6 +49,7 @@ namespace webapi.health.clinic.Controllers
 
         [HttpGet]
         [Route("ListarMinhasConsultas")]
+        [Authorize]
         public IActionResult GetMyConsultations(Guid id)
         {
             try

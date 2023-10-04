@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using webapi.health.clinic.Domains;
 using webapi.health.clinic.Interfaces;
@@ -16,6 +17,7 @@ namespace webapi.health.clinic.Controllers
 
         [HttpGet]
         [Route("Listar")]
+        [Authorize]
         public IActionResult Get()
         {
             try
@@ -31,6 +33,7 @@ namespace webapi.health.clinic.Controllers
 
         [HttpGet]
         [Route("BuscarPorId")]
+        [Authorize]
         public IActionResult GetById(Guid id)
         {
             try
@@ -44,8 +47,25 @@ namespace webapi.health.clinic.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("ListarMinhasConsultas")]
+        [Authorize]
+        public IActionResult GetMyAppointment(Guid id)
+        {
+            try
+            {
+                List<Consulta> listaConsultas = _medicoRepository.ListarMinhasConsultas(id);
+                return Ok(listaConsultas);
+            }
+            catch (Exception error)
+            {
+                return BadRequest(error.Message);
+            }
+        }
+
         [HttpPost]
         [Route("Cadastrar")]
+        [Authorize(Roles = "Administrador")]
         public IActionResult Post(Medico medico)
         {
             try
@@ -61,6 +81,7 @@ namespace webapi.health.clinic.Controllers
 
         [HttpDelete]
         [Route("Deletar")]
+        [Authorize(Roles = "Administrador")]
         public IActionResult Delete(Guid id)
         {
             try
@@ -76,6 +97,7 @@ namespace webapi.health.clinic.Controllers
 
         [HttpPut]
         [Route("Atualizar")]
+        [Authorize(Roles = "Administrador")]
         public IActionResult Put(Guid id, Medico medico)
         {
             try

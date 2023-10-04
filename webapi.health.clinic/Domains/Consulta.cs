@@ -19,11 +19,11 @@ public partial class Consulta
 
     public virtual ICollection<Comentario> Comentarios { get; set; } = new List<Comentario>();
 
-    public virtual Clinica IdClinicaNavigation { get; set; } = null!;
+    public virtual Clinica? IdClinicaNavigation { get; set; } = null!;
 
-    public virtual Medico IdMedicoNavigation { get; set; } = null!;
+    public virtual Medico? IdMedicoNavigation { get; set; } = null!;
 
-    public virtual Paciente IdPacienteNavigation { get; set; } = null!;
+    public virtual Paciente? IdPacienteNavigation { get; set; } = null!;
 
     public virtual ICollection<Prontuario> Prontuarios { get; set; } = new List<Prontuario>();
 }

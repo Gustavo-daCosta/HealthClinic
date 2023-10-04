@@ -15,5 +15,5 @@ public partial class Comentario
 
     public bool Exibe { get; set; }
 
-    public virtual Consulta IdConsultaNavigation { get; set; } = null!;
+    public virtual Consulta? IdConsultaNavigation { get; set; } = null!;
 }

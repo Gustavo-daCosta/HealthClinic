@@ -9,7 +9,5 @@ namespace webapi.health.clinic.Interfaces
         public Usuario BuscarPorId(Guid id);
 
         public Usuario BuscarPorEmailESenha(string email, string senha);
-
-        public List<Consulta> ListarMinhasConsultas(Guid id);
     }
 }

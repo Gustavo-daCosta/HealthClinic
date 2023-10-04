@@ -14,11 +14,24 @@ namespace webapi.health.clinic.Repositories
         {
             try
             {
-                Usuario usuarioBuscado = ListarTodos().FirstOrDefault(u => u.Email == email)!;
+                Usuario usuarioBuscado = ctx.Usuario.Select(u => new Usuario
+                {
+                    IdUsuario = u.IdUsuario,
+                    IdTipoUsuario = u.IdTipoUsuario,
+                    Nome = u.Nome,
+                    Email = u.Email,
+                    Senha = u.Senha,
+                    Telefone = u.Telefone,
+                    IdTipoUsuarioNavigation = new TipoDeUsuario
+                    {
+                        IdTipoUsuario = u.IdTipoUsuarioNavigation!.IdTipoUsuario,
+                        TituloTipoUsuario = u.IdTipoUsuarioNavigation.TituloTipoUsuario,
+                    },
+                }).FirstOrDefault(u => u.Email == email)!;
                 
                 if (usuarioBuscado != null)
                 {
-                    bool senhaValida = Criptografia.CompararHash(senha, usuarioBuscado.Senha!);
+                    bool senhaValida = Criptografia.CompararHash(senha, usuarioBuscado.Senha);
 
                     if (senhaValida)
                         return usuarioBuscado;
@@ -51,7 +64,11 @@ namespace webapi.health.clinic.Repositories
                     Nome = u.Nome,
                     Email = u.Email,
                     Telefone = u.Telefone,
-                    IdTipoUsuarioNavigation = u.IdTipoUsuarioNavigation,
+                    IdTipoUsuarioNavigation = new TipoDeUsuario
+                    {
+                        IdTipoUsuario = u.IdTipoUsuarioNavigation!.IdTipoUsuario,
+                        TituloTipoUsuario = u.IdTipoUsuarioNavigation.TituloTipoUsuario,
+                    },
                 }).ToList();
 
                 return listaUsuarios;
@@ -71,11 +88,6 @@ namespace webapi.health.clinic.Repositories
             }
             catch (Exception)
             { throw; }
-        }
-
-        public List<Consulta> ListarMinhasConsultas(Guid id)
-        {
-            throw new NotImplementedException();
         }
     }
 }

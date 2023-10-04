@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using webapi.health.clinic.Domains;
 using webapi.health.clinic.Interfaces;
@@ -16,6 +17,7 @@ namespace webapi.health.clinic.Controllers
 
         [HttpGet]
         [Route("Listar")]
+        [Authorize]
         public IActionResult Get()
         {
             try
@@ -31,6 +33,7 @@ namespace webapi.health.clinic.Controllers
 
         [HttpGet]
         [Route("BuscarPorId")]
+        [Authorize]
         public IActionResult GetById(Guid id)
         {
             try
@@ -46,6 +49,7 @@ namespace webapi.health.clinic.Controllers
 
         [HttpPost]
         [Route("Cadastrar")]
+        [Authorize("Administrador")]
         public IActionResult Post(Consulta consulta)
         {
             try
@@ -61,6 +65,7 @@ namespace webapi.health.clinic.Controllers
 
         [HttpDelete]
         [Route("Deletar")]
+        [Authorize("Administrador")]
         public IActionResult Delete(Guid id)
         {
             try

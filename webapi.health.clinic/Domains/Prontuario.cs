@@ -13,5 +13,5 @@ public partial class Prontuario
 
     public DateTime DataCriacao { get; set; }
 
-    public virtual Consulta IdConsultaNavigation { get; set; } = null!;
+    public virtual Consulta? IdConsultaNavigation { get; set; } = null!;
 }

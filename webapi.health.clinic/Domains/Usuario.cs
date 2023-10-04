@@ -17,7 +17,7 @@ public partial class Usuario
 
     public string Telefone { get; set; } = null!;
 
-    public virtual TipoDeUsuario IdTipoUsuarioNavigation { get; set; } = null!;
+    public virtual TipoDeUsuario? IdTipoUsuarioNavigation { get; set; } = null!;
 
     public virtual ICollection<Medico> Medicos { get; set; } = new List<Medico>();
 

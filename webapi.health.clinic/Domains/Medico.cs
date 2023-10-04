@@ -17,9 +17,9 @@ public partial class Medico
 
     public virtual ICollection<Consulta> Consulta { get; set; } = new List<Consulta>();
 
-    public virtual Clinica IdClinicaNavigation { get; set; } = null!;
+    public virtual Clinica? IdClinicaNavigation { get; set; } = null!;
 
-    public virtual Especialidade IdEspecialidadeNavigation { get; set; } = null!;
+    public virtual Especialidade? IdEspecialidadeNavigation { get; set; } = null!;
 
-    public virtual Usuario IdUsuarioNavigation { get; set; } = null!;
+    public virtual Usuario? IdUsuarioNavigation { get; set; } = null!;
 }

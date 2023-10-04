@@ -13,5 +13,7 @@ namespace webapi.health.clinic.Interfaces
         public Paciente BuscarPorId(Guid id);
 
         public void Deletar(Guid id);
+
+        public List<Consulta> ListarMinhasConsultas(Guid id);
     }
 }

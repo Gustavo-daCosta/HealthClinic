@@ -77,6 +77,8 @@ namespace webapi.health.clinic.Repositories
                 {
                     IdMedico = p.IdMedico,
                     IdUsuario = p.IdUsuario,
+                    IdClinica = p.IdClinica,
+                    IdEspecialidade = p.IdEspecialidade,
                     IdUsuarioNavigation = new Usuario
                     {
                         IdUsuario = p.IdUsuarioNavigation.IdUsuario,
@@ -92,6 +94,46 @@ namespace webapi.health.clinic.Repositories
             }
             catch (Exception)
             { throw; }
+        }
+
+        public List<Consulta> ListarConsultasMedico(Guid id)
+        {
+            try
+            {
+                List<Consulta> listaConsultas = ctx.Consulta.Where(u => u.IdMedico == id).Select(c => new Consulta
+                {
+                    IdConsulta = c.IdConsulta,
+                    Data = c.Data,
+                    IdMedico = c.IdMedico,
+                    IdPaciente = c.IdPaciente,
+                    IdClinica = c.IdClinica,
+                    IdMedicoNavigation = new Medico
+                    {
+                        IdMedico = c.IdMedicoNavigation!.IdMedico,
+                        Crm = c.IdMedicoNavigation.Crm,
+                    },
+                    IdPacienteNavigation = new Paciente
+                    {
+                        IdPaciente = c.IdPacienteNavigation!.IdPaciente,
+                        Cpf = c.IdPacienteNavigation!.Cpf,
+                        DataNascimento = c.IdPacienteNavigation.DataNascimento,
+                    },
+                    IdClinicaNavigation = new Clinica
+                    {
+                        IdClinica = c.IdClinicaNavigation!.IdClinica,
+                        RazaoSocial = c.IdClinicaNavigation.RazaoSocial,
+                        Endereco = c.IdClinicaNavigation.Endereco,
+                        HoraAbertura = c.IdClinicaNavigation.HoraAbertura,
+                        HoraEncerramento = c.IdClinicaNavigation.HoraEncerramento,
+                    }
+                }).ToList();
+
+                return listaConsultas;
+            }
+            catch (Exception)
+            {
+                throw;
+            };
         }
     }
 }

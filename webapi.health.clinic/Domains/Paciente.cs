@@ -15,5 +15,5 @@ public partial class Paciente
 
     public virtual ICollection<Consulta> Consulta { get; set; } = new List<Consulta>();
 
-    public virtual Usuario IdUsuarioNavigation { get; set; } = null!;
+    public virtual Usuario? IdUsuarioNavigation { get; set; } = null!;
 }
