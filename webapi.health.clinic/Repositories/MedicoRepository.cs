@@ -96,7 +96,7 @@ namespace webapi.health.clinic.Repositories
             { throw; }
         }
 
-        public List<Consulta> ListarConsultasMedico(Guid id)
+        public List<Consulta> ListarMinhasConsultas(Guid id)
         {
             try
             {

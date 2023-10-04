@@ -7,14 +7,25 @@ using webapi.health.clinic.Repositories;
 
 namespace webapi.health.clinic.Controllers
 {
+    /// <summary>
+    /// Controller responsável por gerenciar operações relacionadas aos Pacientes.
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     [Produces("application/json")]
     public class PacienteController : ControllerBase
     {
         private IPacienteRepository _pacienteRepository { get; set; }
+
+        /// <summary>
+        /// Construtor padrão do PacienteController.
+        /// </summary>
         public PacienteController() => _pacienteRepository = new PacienteRepository();
 
+        /// <summary>
+        /// Obtém uma lista de todos os pacientes.
+        /// </summary>
+        /// <returns>Uma lista de objetos Paciente.</returns>
         [HttpGet]
         [Route("Listar")]
         [Authorize]
@@ -31,6 +42,11 @@ namespace webapi.health.clinic.Controllers
             }
         }
 
+        /// <summary>
+        /// Obtém um paciente por seu identificador único.
+        /// </summary>
+        /// <param name="id">O identificador único do paciente.</param>
+        /// <returns>O paciente correspondente ao identificador fornecido.</returns>
         [HttpGet]
         [Route("BuscarPorId")]
         [Authorize]
@@ -47,6 +63,11 @@ namespace webapi.health.clinic.Controllers
             }
         }
 
+        /// <summary>
+        /// Obtém uma lista de consultas associadas a um paciente específico.
+        /// </summary>
+        /// <param name="id">O identificador único do paciente.</param>
+        /// <returns>Uma lista de objetos Consulta.</returns>
         [HttpGet]
         [Route("ListarMinhasConsultas")]
         [Authorize]
@@ -63,6 +84,11 @@ namespace webapi.health.clinic.Controllers
             }
         }
 
+        /// <summary>
+        /// Cadastra um novo paciente no sistema.
+        /// </summary>
+        /// <param name="paciente">O objeto Paciente a ser cadastrado.</param>
+        /// <returns>StatusCode 201 (Created) se o cadastro for bem-sucedido.</returns>
         [HttpPost]
         [Route("Cadastrar")]
         [Authorize(Roles = "Administrador")]
@@ -79,6 +105,11 @@ namespace webapi.health.clinic.Controllers
             }
         }
 
+        /// <summary>
+        /// Deleta um paciente do sistema.
+        /// </summary>
+        /// <param name="id">O identificador único do paciente a ser deletado.</param>
+        /// <returns>StatusCode 200 (OK) se a exclusão for bem-sucedida.</returns>
         [HttpDelete]
         [Route("Deletar")]
         [Authorize(Roles = "Administrador")]
@@ -95,6 +126,12 @@ namespace webapi.health.clinic.Controllers
             }
         }
 
+        /// <summary>
+        /// Atualiza os dados de um paciente existente no sistema.
+        /// </summary>
+        /// <param name="id">O identificador único do paciente a ser atualizado.</param>
+        /// <param name="paciente">O objeto Paciente com os novos dados.</param>
+        /// <returns>StatusCode 200 (OK) se a atualização for bem-sucedida.</returns>
         [HttpPut]
         [Route("Atualizar")]
         [Authorize(Roles = "Administrador")]

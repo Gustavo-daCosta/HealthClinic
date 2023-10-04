@@ -7,14 +7,25 @@ using webapi.health.clinic.Repositories;
 
 namespace webapi.health.clinic.Controllers
 {
+    /// <summary>
+    /// Controller responsável pelas operações relacionadas a Especialidades.
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     [Produces("application/json")]
     public class EspecialidadeController : ControllerBase
     {
         private IEspecialidadeRepository _especialidadeRepository { get; set; }
+
+        /// <summary>
+        /// Construtor padrão do EspecialidadeController que inicializa o repositório de especialidades.
+        /// </summary>
         public EspecialidadeController() => _especialidadeRepository = new EspecialidadeRepository();
 
+        /// <summary>
+        /// Obtém a lista de todas as especialidades.
+        /// </summary>
+        /// <returns>Uma lista de objetos Especialidade.</returns>
         [HttpGet]
         [Route("ListarTodos")]
         [Authorize]
@@ -31,6 +42,11 @@ namespace webapi.health.clinic.Controllers
             }
         }
 
+        /// <summary>
+        /// Obtém uma especialidade por seu identificador único.
+        /// </summary>
+        /// <param name="id">O identificador único da especialidade.</param>
+        /// <returns>A especialidade correspondente ao identificador fornecido.</returns>
         [HttpGet]
         [Route("BuscarPorId")]
         [Authorize]
@@ -47,6 +63,11 @@ namespace webapi.health.clinic.Controllers
             }
         }
 
+        /// <summary>
+        /// Cadastra uma nova especialidade.
+        /// </summary>
+        /// <param name="especialidade">A especialidade a ser cadastrada.</param>
+        /// <returns>Um código de status indicando o resultado da operação.</returns>
         [HttpPost]
         [Route("Cadastrar")]
         [Authorize(Roles = "Administrador")]
@@ -63,6 +84,11 @@ namespace webapi.health.clinic.Controllers
             }
         }
 
+        /// <summary>
+        /// Deleta uma especialidade por seu identificador único.
+        /// </summary>
+        /// <param name="id">O identificador único da especialidade a ser deletada.</param>
+        /// <returns>Um código de status indicando o resultado da operação.</returns>
         [HttpDelete]
         [Route("Deletar")]
         [Authorize(Roles = "Administrador")]
@@ -79,6 +105,12 @@ namespace webapi.health.clinic.Controllers
             }
         }
 
+        /// <summary>
+        /// Atualiza uma especialidade por seu identificador único.
+        /// </summary>
+        /// <param name="id">O identificador único da especialidade a ser atualizada.</param>
+        /// <param name="especialidade">A nova informação da especialidade.</param>
+        /// <returns>Um código de status indicando o resultado da operação.</returns>
         [HttpPut]
         [Route("Atualizar")]
         [Authorize(Roles = "Administrador")]

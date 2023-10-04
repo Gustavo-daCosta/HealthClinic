@@ -7,14 +7,25 @@ using webapi.health.clinic.Repositories;
 
 namespace webapi.health.clinic.Controllers
 {
+    /// <summary>
+    /// Controlador responsável pelas operações relacionadas a Consultas.
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     [Produces("application/json")]
     public class ConsultaController : ControllerBase
     {
         private IConsultaRepository _consultaRepository { get; set; }
+
+        /// <summary>
+        /// Construtor padrão do ConsultaController que inicializa o repositório de consultas.
+        /// </summary>
         public ConsultaController() => _consultaRepository = new ConsultaRepository();
 
+        /// <summary>
+        /// Obtém a lista de todas as consultas.
+        /// </summary>
+        /// <returns>Lista de consultas.</returns>
         [HttpGet]
         [Route("Listar")]
         [Authorize]
@@ -31,6 +42,11 @@ namespace webapi.health.clinic.Controllers
             }
         }
 
+        /// <summary>
+        /// Obtém uma consulta pelo seu identificador único.
+        /// </summary>
+        /// <param name="id">Identificador único da consulta.</param>
+        /// <returns>A consulta encontrada.</returns>
         [HttpGet]
         [Route("BuscarPorId")]
         [Authorize]
@@ -47,6 +63,11 @@ namespace webapi.health.clinic.Controllers
             }
         }
 
+        /// <summary>
+        /// Cadastra uma nova consulta.
+        /// </summary>
+        /// <param name="consulta">Consulta a ser cadastrada.</param>
+        /// <returns>Código de status indicando o resultado da operação.</returns>
         [HttpPost]
         [Route("Cadastrar")]
         [Authorize("Administrador")]
@@ -63,6 +84,11 @@ namespace webapi.health.clinic.Controllers
             }
         }
 
+        /// <summary>
+        /// Deleta uma consulta pelo seu identificador único.
+        /// </summary>
+        /// <param name="id">Identificador único da consulta a ser deletada.</param>
+        /// <returns>Código de status indicando o resultado da operação.</returns>
         [HttpDelete]
         [Route("Deletar")]
         [Authorize("Administrador")]
@@ -79,6 +105,12 @@ namespace webapi.health.clinic.Controllers
             }
         }
 
+        /// <summary>
+        /// Atualiza uma consulta pelo seu identificador único.
+        /// </summary>
+        /// <param name="id">Identificador único da consulta a ser atualizada.</param>
+        /// <param name="consulta">Nova informação da consulta.</param>
+        /// <returns>Código de status indicando o resultado da operação.</returns>
         [HttpPut]
         [Route("Atualizar")]
         public IActionResult Put(Guid id, Consulta consulta)

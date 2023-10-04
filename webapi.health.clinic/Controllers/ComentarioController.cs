@@ -8,14 +8,25 @@ using webapi.health.clinic.Repositories;
 
 namespace webapi.health.clinic.Controllers
 {
+    /// <summary>
+    /// Controlador responsável por operações relacionadas a comentários.
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     [Produces("application/json")]
     public class ComentarioController : ControllerBase
     {
         private IComentarioRepository _comentarioRepository { get; set; }
+
+        /// <summary>
+        /// Construtor padrão que inicializa uma instância do controlador ComentarioController.
+        /// </summary>
         public ComentarioController() => _comentarioRepository = new ComentarioRepository();
 
+        /// <summary>
+        /// Obtém uma lista de todos os comentários.
+        /// </summary>
+        /// <returns>Uma lista de comentários ou uma mensagem indicando que nenhum prontuário foi encontrado.</returns>
         [HttpGet]
         [Route("Listar")]
         [Authorize]
@@ -32,6 +43,11 @@ namespace webapi.health.clinic.Controllers
             }
         }
 
+        /// <summary>
+        /// Obtém um comentário pelo seu identificador único.
+        /// </summary>
+        /// <param name="id">O identificador único do comentário.</param>
+        /// <returns>O comentário encontrado ou uma mensagem indicando que o prontuário não foi encontrado.</returns>
         [HttpGet]
         [Route("BuscarPorId")]
         [Authorize]
@@ -48,6 +64,11 @@ namespace webapi.health.clinic.Controllers
             }
         }
 
+        /// <summary>
+        /// Cadastra um novo comentário.
+        /// </summary>
+        /// <param name="comentario">O objeto Comentario a ser cadastrado.</param>
+        /// <returns>Um status code 201 se o cadastro for bem-sucedido.</returns>
         [HttpPost]
         [Route("Cadastrar")]
         [Authorize(Roles = "Paciente")]
@@ -64,6 +85,11 @@ namespace webapi.health.clinic.Controllers
             }
         }
 
+        /// <summary>
+        /// Deleta um comentário pelo seu identificador único.
+        /// </summary>
+        /// <param name="id">O identificador único do comentário a ser deletado.</param>
+        /// <returns>Um status code 200 se a operação for bem-sucedida.</returns>
         [HttpDelete]
         [Route("Deletar")]
         [Authorize(Roles = "Paciente")]
@@ -80,6 +106,12 @@ namespace webapi.health.clinic.Controllers
             }
         }
 
+        /// <summary>
+        /// Atualiza um comentário pelo seu identificador único.
+        /// </summary>
+        /// <param name="id">O identificador único do comentário a ser atualizado.</param>
+        /// <param name="comentario">O objeto Comentario com os dados atualizados.</param>
+        /// <returns>Um status code 200 se a atualização for bem-sucedida.</returns>
         [HttpPut]
         [Route("Atualizar")]
         [Authorize(Roles = "Paciente")]

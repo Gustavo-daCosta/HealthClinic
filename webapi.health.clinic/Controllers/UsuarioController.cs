@@ -7,14 +7,27 @@ using webapi.health.clinic.Repositories;
 
 namespace webapi.health.clinic.Controllers
 {
+    /// <summary>
+    /// Controller responsável por gerenciar operações relacionadas a usuários.
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     [Produces("application/json")]
     public class UsuarioController : ControllerBase
     {
         private IUsuarioRepository _usuarioRepository { get; set; }
+
+        /// <summary>
+        /// Construtor padrão que inicializa uma instância do controlador e o repositório de usuários.
+        /// </summary>
         public UsuarioController() => _usuarioRepository = new UsuarioRepository();
 
+        /// <summary>
+        /// Obtém um usuário com base no e-mail e senha fornecidos.
+        /// </summary>
+        /// <param name="email">O endereço de e-mail do usuário.</param>
+        /// <param name="senha">A senha do usuário.</param>
+        /// <returns>O usuário correspondente ao e-mail e senha fornecidos.</returns>
         [HttpGet]
         [Route("BuscarPorEmailESenha")]
         [Authorize]
@@ -31,6 +44,11 @@ namespace webapi.health.clinic.Controllers
             }
         }
 
+        /// <summary>
+        /// Obtém um usuário com base no seu identificador único.
+        /// </summary>
+        /// <param name="id">O identificador único do usuário.</param>
+        /// <returns>O usuário correspondente ao identificador fornecido.</returns>
         [HttpGet]
         [Route("BuscarPorId")]
         [Authorize]
@@ -47,22 +65,11 @@ namespace webapi.health.clinic.Controllers
             }
         }
 
-        [HttpGet]
-        [Route("ListarMinhasConsultas")]
-        [Authorize]
-        public IActionResult GetMyConsultations(Guid id)
-        {
-            try
-            {
-                List<Consulta> listaConsultas = _usuarioRepository.ListarMinhasConsultas(id);
-                return Ok(listaConsultas);
-            }
-            catch (Exception error)
-            {
-                return BadRequest(error.Message);
-            }
-        }
-
+        /// <summary>
+        /// Cadastra um novo usuário.
+        /// </summary>
+        /// <param name="usuario">O objeto de usuário a ser cadastrado.</param>
+        /// <returns>Um código de status indicando o resultado da operação.</returns>
         [HttpPost]
         [Route("Cadastrar")]
         public IActionResult Post(Usuario usuario)

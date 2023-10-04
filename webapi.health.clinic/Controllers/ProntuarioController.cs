@@ -8,14 +8,25 @@ using webapi.health.clinic.Repositories;
 
 namespace webapi.health.clinic.Controllers
 {
+    /// <summary>
+    /// Controlador responsável pelas operações relacionadas aos prontuários.
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     [Produces("application/json")]
     public class ProntuarioController : ControllerBase
     {
         private IProntuarioRepository _prontuarioRepository { get; set; }
+
+        /// <summary>
+        /// Construtor padrão que inicializa o repositório de prontuários.
+        /// </summary>
         public ProntuarioController() => _prontuarioRepository = new ProntuarioRepository();
 
+        /// <summary>
+        /// Obtém a lista de todos os prontuários.
+        /// </summary>
+        /// <returns>Uma lista de prontuários ou uma mensagem indicando que nenhum prontuário foi encontrado.</returns>
         [HttpGet]
         [Route("Listar")]
         [Authorize]
@@ -32,6 +43,11 @@ namespace webapi.health.clinic.Controllers
             }
         }
 
+        /// <summary>
+        /// Obtém um prontuário pelo seu identificador único.
+        /// </summary>
+        /// <param name="id">O identificador único do prontuário.</param>
+        /// <returns>O prontuário encontrado ou uma mensagem indicando que nenhum prontuário foi encontrado.</returns>
         [HttpGet]
         [Route("BuscarPorId")]
         [Authorize]
@@ -48,6 +64,11 @@ namespace webapi.health.clinic.Controllers
             }
         }
 
+        /// <summary>
+        /// Cadastra um novo prontuário.
+        /// </summary>
+        /// <param name="prontuario">O objeto Prontuario a ser cadastrado.</param>
+        /// <returns>Status 201 Created em caso de sucesso.</returns>
         [HttpPost]
         [Route("Cadastrar")]
         [Authorize(Roles = "Médico")]
@@ -64,6 +85,11 @@ namespace webapi.health.clinic.Controllers
             }
         }
 
+        /// <summary>
+        /// Deleta um prontuário pelo seu identificador único.
+        /// </summary>
+        /// <param name="id">O identificador único do prontuário a ser deletado.</param>
+        /// <returns>Status 200 OK em caso de sucesso.</returns>
         [HttpDelete]
         [Route("Deletar")]
         [Authorize(Roles = "Médico")]
@@ -80,6 +106,12 @@ namespace webapi.health.clinic.Controllers
             }
         }
 
+        /// <summary>
+        /// Atualiza um prontuário pelo seu identificador único.
+        /// </summary>
+        /// <param name="id">O identificador único do prontuário a ser atualizado.</param>
+        /// <param name="prontuario">O objeto Prontuario atualizado.</param>
+        /// <returns>Status 200 OK em caso de sucesso.</returns>
         [HttpPut]
         [Route("Atualizar")]
         public IActionResult Put(Guid id, Prontuario prontuario)

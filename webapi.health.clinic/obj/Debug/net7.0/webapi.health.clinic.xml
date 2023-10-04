@@ -4,5 +4,145 @@
         <name>webapi.health.clinic</name>
     </assembly>
     <members>
+        <member name="T:webapi.health.clinic.Domains.Clinica">
+            <summary>
+            Classe que representa a entidade Clinica.
+            </summary>
+        </member>
+        <member name="P:webapi.health.clinic.Domains.Clinica.IdClinica">
+            <summary>
+            Obtém ou define o identificador único da clínica.
+            </summary>
+        </member>
+        <member name="P:webapi.health.clinic.Domains.Clinica.RazaoSocial">
+            <summary>
+            Obtém ou define a razão social da clínica.
+            </summary>
+        </member>
+        <member name="P:webapi.health.clinic.Domains.Clinica.Endereco">
+            <summary>
+            Obtém ou define o endereço da clínica.
+            </summary>
+        </member>
+        <member name="P:webapi.health.clinic.Domains.Clinica.Cnpj">
+            <summary>
+            Obtém ou define o CNPJ da clínica.
+            </summary>
+        </member>
+        <member name="P:webapi.health.clinic.Domains.Clinica.HoraAbertura">
+            <summary>
+            Obtém ou define a hora de abertura da clínica.
+            </summary>
+        </member>
+        <member name="P:webapi.health.clinic.Domains.Clinica.HoraEncerramento">
+            <summary>
+            Obtém ou define a hora de encerramento da clínica.
+            </summary>
+        </member>
+        <member name="P:webapi.health.clinic.Domains.Clinica.Consultas">
+            <summary>
+            Obtém ou define a lista de consultas associadas à clínica.
+            </summary>
+        </member>
+        <member name="P:webapi.health.clinic.Domains.Clinica.Medicos">
+            <summary>
+            Obtém ou define a lista de médicos associados à clínica.
+            </summary>
+        </member>
+        <member name="T:webapi.health.clinic.Domains.Comentario">
+            <summary>
+            Classe que representa a entidade Comentario.
+            </summary>
+        </member>
+        <member name="P:webapi.health.clinic.Domains.Comentario.IdComentario">
+            <summary>
+            Obtém ou define o identificador único do comentário.
+            </summary>
+        </member>
+        <member name="P:webapi.health.clinic.Domains.Comentario.IdConsulta">
+            <summary>
+            Obtém ou define o identificador único da consulta associada ao comentário.
+            </summary>
+        </member>
+        <member name="P:webapi.health.clinic.Domains.Comentario.Descricao">
+            <summary>
+            Obtém ou define a descrição do comentário.
+            </summary>
+        </member>
+        <member name="P:webapi.health.clinic.Domains.Comentario.DataCriacao">
+            <summary>
+            Obtém ou define a data de criação do comentário.
+            </summary>
+        </member>
+        <member name="P:webapi.health.clinic.Domains.Comentario.Exibe">
+            <summary>
+            Obtém ou define um valor que indica se o comentário deve ser exibido.
+            </summary>
+        </member>
+        <member name="P:webapi.health.clinic.Domains.Comentario.IdConsultaNavigation">
+            <summary>
+            Obtém ou define a navegação para a consulta associada ao comentário.
+            </summary>
+        </member>
+        <member name="T:webapi.health.clinic.Domains.Consulta">
+            <summary>
+            Classe que representa a entidade Comentario.
+            </summary>
+        </member>
+        <member name="P:webapi.health.clinic.Domains.Consulta.IdConsulta">
+            <summary>
+            Obtém ou define o identificador único da consulta.
+            </summary>
+        </member>
+        <member name="P:webapi.health.clinic.Domains.Consulta.IdClinica">
+            <summary>
+            Obtém ou define o identificador único da clínica associada à consulta.
+            </summary>
+        </member>
+        <member name="P:webapi.health.clinic.Domains.Consulta.IdMedico">
+            <summary>
+            Obtém ou define o identificador único do médico associado à consulta.
+            </summary>
+        </member>
+        <member name="P:webapi.health.clinic.Domains.Consulta.IdPaciente">
+            <summary>
+            Obtém ou define o identificador único do paciente associado à consulta.
+            </summary>
+        </member>
+        <member name="P:webapi.health.clinic.Domains.Consulta.Data">
+            <summary>
+            Obtém ou define a data da consulta.
+            </summary>
+        </member>
+        <member name="P:webapi.health.clinic.Domains.Consulta.Situacao">
+            <summary>
+            Obtém ou define a situação da consulta (Ativa ou Inativa).
+            </summary>
+        </member>
+        <member name="P:webapi.health.clinic.Domains.Consulta.Comentarios">
+            <summary>
+            Obtém ou define a coleção de comentários associados à consulta.
+            </summary>
+        </member>
+        <member name="P:webapi.health.clinic.Domains.Consulta.IdClinicaNavigation">
+            <summary>
+            Obtém ou define a clínica relacionada à consulta.
+            </summary>
+        </member>
+        <member name="P:webapi.health.clinic.Domains.Consulta.IdMedicoNavigation">
+            <summary>
+            Obtém ou define o médico relacionado à consulta.
+            </summary>
+        </member>
+        <member name="P:webapi.health.clinic.Domains.Consulta.IdPacienteNavigation">
+            <summary>
+            Obtém ou define o paciente relacionado à consulta.
+            </summary>
+        </member>
+        <member name="P:webapi.health.clinic.Domains.Consulta.Prontuarios">
+            <summary>
+            Obtém ou define a coleção de prontuários associados à consulta.
+            </summary>
+        </member>
     </members>
 </doc>
